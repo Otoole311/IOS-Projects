@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct RecipeTabView: View {
+    
+    @State private var TabIndex:Int = 0
+    
     var body: some View {
         
-        TabView {
+        TabView(selection: $TabIndex) {
             
             //MARK: Feature view
             Text("Feature View")
@@ -19,7 +22,7 @@ struct RecipeTabView: View {
                         Image(systemName: "star.fill")
                         Text("Featured")
                     }
-                }
+                }.tag(0)
             
             //MARK: Recipe list view
             ContentView()
@@ -28,7 +31,7 @@ struct RecipeTabView: View {
                         Image(systemName: "list.bullet")
                         Text("Recipes")
                     }
-                }
+                }.tag(1)
         }
     }
 }
