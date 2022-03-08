@@ -13,6 +13,7 @@ struct LearningApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(DataModel())
+                .preferredColorScheme(.light)
         }
     }
 }
