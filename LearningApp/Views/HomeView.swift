@@ -18,38 +18,42 @@ struct HomeView: View {
                 Text("Choose something to do today..")
                     .padding(.leading, 20.0)
                 ScrollView{
+                    
+                    LazyVStack{
                         
-                        LazyVStack{
+                        ForEach(model.modules){
+                            module in
                             
-                            ForEach(model.modules){
-                                module in
+                            VStack(spacing: 20.0)
+                            {
+                                //learning card
+                                //MARK: Learning Card
+                                NavigationLink(destination:
+                                                ContentView()
+                                                .onAppear(perform:
+                                                            {
+                                    model.beginModule(module_id: module.id)
+                                }),
+                                               tag: module.id,
+                                               selection: $model.currentContentSelected,
+                                               label: {
+                                    HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessons", time: module.content.time)
+                                })
                                 
-                                VStack(spacing: 20.0)
-                                {
-                                    //learning card
-                                    //MARK: Learning Card
-                                    NavigationLink(destination:
-                                                    ContentView()
-                                                    .onAppear(perform:
-                                                                {
-                                                            model.beginModule(module_id: module.id)
-                                                        }))
-                                    {
-                                        HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessons", time: module.content.time)
-                                    }
-                                    
-                                    //test card
-                                    HomeViewRow(image: module.test.image, title: " \(module.category) test", description: module.test.description, count: "\(module.test.questions.count) Lessons", time: module.test.time)
-                                }
+                                
+                                //test card
+                                HomeViewRow(image: module.test.image, title: " \(module.category) test", description: module.test.description, count: "\(module.test.questions.count) Lessons", time: module.test.time)
                             }
                         }
-                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                        
+                    }
+                    .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                    
                 }
             }
             .accentColor(.black)
             .navigationTitle("Get Started")
         }
+        .navigationViewStyle(.stack)
     }
 }
 
