@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EB08B03827E8D0010097EF87 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB08B03727E8D0010097EF87 /* TestView.swift */; };
+		EB08B03C27E908DA0097EF87 /* TestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB08B03B27E908DA0097EF87 /* TestResultView.swift */; };
 		EB17C1A627E1EAEF00F46B70 /* RectangleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17C1A527E1EAEF00F46B70 /* RectangleCard.swift */; };
 		EBA49CCD27D6120800EA5EA0 /* LearningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA49CCC27D6120800EA5EA0 /* LearningApp.swift */; };
 		EBA49CCF27D6120800EA5EA0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA49CCE27D6120800EA5EA0 /* HomeView.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		EB08B03727E8D0010097EF87 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		EB08B03B27E908DA0097EF87 /* TestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultView.swift; sourceTree = "<group>"; };
 		EB17C1A527E1EAEF00F46B70 /* RectangleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCard.swift; sourceTree = "<group>"; };
 		EBA49CC927D6120800EA5EA0 /* LearningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA49CCC27D6120800EA5EA0 /* LearningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningApp.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				EBCBD61E27D8B796005F38AF /* CodeTextView.swift */,
 				EB17C1A527E1EAEF00F46B70 /* RectangleCard.swift */,
 				EB08B03727E8D0010097EF87 /* TestView.swift */,
+				EB08B03B27E908DA0097EF87 /* TestResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				EBA49CE927D6168800EA5EA0 /* Lesson.swift in Sources */,
 				EBA49CCF27D6120800EA5EA0 /* HomeView.swift in Sources */,
 				EBA49CCD27D6120800EA5EA0 /* LearningApp.swift in Sources */,
+				EB08B03C27E908DA0097EF87 /* TestResultView.swift in Sources */,
 				EBEE727427D7D13100DF09BB /* constants.swift in Sources */,
 				EBA49CE527D6148D00EA5EA0 /* Module.swift in Sources */,
 				EBEE726F27D7CAA300DF09BB /* ContentDetailView.swift in Sources */,
