@@ -40,9 +40,25 @@ struct HomeView: View {
                                     HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessons", time: module.content.time)
                                 })
                                 
+//                                NavigationLink( destination:
+//                                                    TestView()
+//                                                    .onAppear(perform:
+//                                                                {
+//                                    model.beginTest(module_Id: module.id)
+//                                        }),
+//                                                tag: module.id, selection: $model.currentTestSelected) {
+//
+//                                    //test card
+//                                    HomeViewRow(image: module.test.image, title: " \(module.category) test", description: module.test.description, count: "\(module.test.questions.count) Lessons", time: module.test.time)
+//                                }
                                 
-                                //test card
-                                HomeViewRow(image: module.test.image, title: " \(module.category) test", description: module.test.description, count: "\(module.test.questions.count) Lessons", time: module.test.time)
+                                NavigationLink(destination: TestView().onAppear(perform: {model.beginTest(module_Id: module.id)}), tag: module.id, selection: $model.currentTestSelected) {
+                                    //
+                                    HomeViewRow(image: module.test.image, title: " \(module.category) test", description: module.test.description, count: "\(module.test.questions.count) Lessons", time: module.test.time)
+                                }
+                                
+                            
+                               
                             }
                         }
                     }

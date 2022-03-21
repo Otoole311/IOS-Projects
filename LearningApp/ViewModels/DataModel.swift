@@ -20,12 +20,16 @@ class DataModel: ObservableObject {
     @Published var currentLesson: Lesson?
     var currentModuleLessonIndex = 0
     
+    @Published var currentQuestion: Question?
+    var currentQuestionIndex = 0
+    
     //Current lesson explanation
-    @Published var lessonDescription = NSAttributedString()
+    @Published var codeText = NSAttributedString()
     var styleData: Data?
 
     //current selected content and test
     @Published var currentContentSelected:Int?
+    @Published var currentTestSelected:Int?
     
     init(){
         self.modules = DataService.getLocalData()
@@ -78,7 +82,7 @@ class DataModel: ObservableObject {
         
         //set the current lesson
         currentLesson = currentModule!.content.lessons[currentModuleLessonIndex]
-        lessonDescription = addStyling(currentLesson!.explanation)
+        codeText = addStyling(currentLesson!.explanation)
     }
     
     func nexLesson(){
@@ -90,7 +94,7 @@ class DataModel: ObservableObject {
         if currentModuleLessonIndex < currentModule!.content.lessons.count {
             //set the current lesson property
             currentLesson = currentModule!.content.lessons[currentModuleLessonIndex]
-            lessonDescription = addStyling(currentLesson!.explanation)
+            codeText = addStyling(currentLesson!.explanation)
         }
         else
         {
@@ -103,6 +107,21 @@ class DataModel: ObservableObject {
     
     func hasNextLesson() -> Bool{
         return (currentModuleLessonIndex + 1 < currentModule!.content.lessons.count)
+    }
+    
+    func beginTest(module_Id:Int){
+        
+        //set the current module
+        beginModule(module_id: module_Id)
+        
+        //Set the current question
+        currentQuestionIndex = 0
+        
+        //set the current question to the first one if there are questions
+        if currentModule?.test.questions.count ?? 0 > 0{
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            codeText = addStyling(currentQuestion!.content)
+        }
     }
     
     
