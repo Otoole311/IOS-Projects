@@ -124,6 +124,23 @@ class DataModel: ObservableObject {
         }
     }
     
+    func nextQuestion(){
+        //advanxe the question index
+        currentQuestionIndex += 1
+        //check if within range of questions
+        if currentQuestionIndex < currentModule!.test.questions.count{
+            //set the current qustion
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            codeText = addStyling(currentQuestion!.content)
+        }
+        else
+        {
+            //if not then reset the properties
+            currentQuestionIndex = 0
+            currentQuestion = nil
+        }
+    }
+    
     
     //MARK: Code Styling
     private func addStyling(_ htmlStringL: String) -> NSAttributedString{
