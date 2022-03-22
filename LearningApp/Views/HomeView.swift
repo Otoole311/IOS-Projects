@@ -40,17 +40,6 @@ struct HomeView: View {
                                     HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessons", time: module.content.time)
                                 })
                                 
-//                                NavigationLink( destination:
-//                                                    TestView()
-//                                                    .onAppear(perform:
-//                                                                {
-//                                    model.beginTest(module_Id: module.id)
-//                                        }),
-//                                                tag: module.id, selection: $model.currentTestSelected) {
-//
-//                                    //test card
-//                                    HomeViewRow(image: module.test.image, title: " \(module.category) test", description: module.test.description, count: "\(module.test.questions.count) Lessons", time: module.test.time)
-//                                }
                                 
                                 NavigationLink(destination: TestView().onAppear(perform: {model.beginTest(module_Id: module.id)}), tag: module.id, selection: $model.currentTestSelected) {
                                     //
@@ -68,6 +57,16 @@ struct HomeView: View {
             }
             .accentColor(.black)
             .navigationTitle("Get Started")
+            .onChange(of: model.currentContentSelected, perform: {ChangedValue in
+                if ChangedValue == nil {
+                    model.currentModule = nil
+                }
+            })
+            .onChange(of: model.currentTestSelected, perform: {ChangedValue in
+                if ChangedValue == nil {
+                    model.currentModule = nil
+                }
+            })
         }
         .navigationViewStyle(.stack)
     }

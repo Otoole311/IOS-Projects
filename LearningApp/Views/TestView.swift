@@ -153,7 +153,7 @@ struct TestView: View {
             }
         }
         else{
-            return "Submited"
+            return "Submit"
         }
     }
 }

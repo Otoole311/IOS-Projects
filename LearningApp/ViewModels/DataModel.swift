@@ -8,7 +8,6 @@
 import Foundation
 
 class DataModel: ObservableObject {
-    
     //List of modules
     @Published var modules = [Module]()
     
@@ -33,18 +32,50 @@ class DataModel: ObservableObject {
     
     init(){
         self.modules = DataService.getLocalData()
+        //self.modules += DataService.getRemoteData()
+        self.styleData = DataService.getStyling()
         
-        let styleUrl = Bundle.main.url(forResource: "style", withExtension: "html")
         
-        do
-        {
-            let styleData = try Data(contentsOf: styleUrl!)
-            self.styleData = styleData
+        let urlString = "https://otoole311.github.io/learningapp-data/data2.json"
+        
+        //create a url object
+        let url = URL(string: urlString)
+        
+        guard url != nil else{
+            //could not create url
+            return
         }
-        catch
-        {
-            print(error)
+        
+        //create a urlrequst object
+        let request = URLRequest(url:url!)
+        
+        //get the seession and kick off the task
+        let session = URLSession.shared
+        
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            //check if there's an error
+            guard error == nil else{
+                //there was an error
+                return
+            }
+            
+            //create json decoder
+            do{
+                let decoder = JSONDecoder()
+                
+                //decode
+                let modules = try decoder.decode([Module].self,from: data!)
+                self.modules += modules
+            }
+            catch{
+                //couldnt pass json
+            }
+            //handle the response
         }
+        
+        //kick off data task
+        dataTask.resume()
+        
     }
     
     /**
@@ -106,6 +137,10 @@ class DataModel: ObservableObject {
     }
     
     func hasNextLesson() -> Bool{
+        
+        guard currentModule != nil else{
+            return false
+        }
         return (currentModuleLessonIndex + 1 < currentModule!.content.lessons.count)
     }
     
